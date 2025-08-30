@@ -1,0 +1,126 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.solar-system {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+#sun {
+    position: absolute;
+    background-color: #f9d71c;
+    border-radius: 50%;
+    box-shadow: 0 0 30px #f9d71c;
+}
+
+.orbit {
+    position: absolute;
+    width: calc(var(--orbit-radius) * 2);
+    height: calc(var(--orbit-radius) * 2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: rotate var(--orbit-duration) linear infinite;
+    pointer-events: none; /* Pass mouse events through the orbit div */
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.planet {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto; /* Make planets clickable again */
+}
+
+#Mercury { background-color: #a9a9a9; width: 8px; height: 8px; }
+#Venus { background-color: #e5e5e5; width: 12px; height: 12px; }
+#Earth { background-color: #6b93d6; width: 13px; height: 13px; }
+#Mars { background-color: #c1440e; width: 10px; height: 10px; }
+#Jupiter { background-color: #d8ca9d; width: 25px; height: 25px; }
+#Saturn { background-color: #e3dccb; width: 22px; height: 22px; }
+#Uranus { background-color: #afdbf5; width: 18px; height: 18px; }
+#Neptune { background-color: #3f54ba; width: 17px; height: 17px; }
+
+.planet-view {
+    display: none;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #444;
+    background-color: #1a1a2e;
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.quadrant-selector-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.quadrant-selector {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    border: 1px solid #555;
+    background-color: #333;
+}
+
+.quadrant {
+    background-color: #444;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.quadrant:hover {
+    background-color: #666;
+}
+
+.quadrant.active {
+    background-color: #888;
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.5);
+}
+
+#tooltip {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-family: sans-serif;
+    pointer-events: none; /* so it doesn't interfere with mouse events on planets */
+    z-index: 100;
+}
+
+#tooltip ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+}
