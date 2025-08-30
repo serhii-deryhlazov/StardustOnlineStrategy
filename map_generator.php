@@ -71,12 +71,12 @@ class TerrainMapGenerator {
         $centerY = $this->height / 2;
         
         // Create multiple land seeds
-        $numSeeds = rand(3, 8);
+        $numSeeds = rand(9, 12);
         
         for ($seed = 0; $seed < $numSeeds; $seed++) {
             $landX = rand(10, $this->width - 10);
             $landY = rand(10, $this->height - 10);
-            $landSize = rand(8, 20);
+            $landSize = rand(20, 50);
             
             // Create circular landmass
             for ($y = 0; $y < $this->height; $y++) {
@@ -105,11 +105,11 @@ class TerrainMapGenerator {
                     
                     if ($elevation > 0.6) {
                         $this->map[$y][$x] = self::MOUNTAINS;
-                    } elseif ($elevation > 0.2) {
+                    } elseif ($elevation > 0.1) {
                         $this->map[$y][$x] = self::FOREST;
-                    } elseif ($elevation < -0.3) {
+                    } elseif ($elevation < -0.5) {
                         $this->map[$y][$x] = self::SWAMP;
-                    } elseif ($elevation < -0.6) {
+                    } elseif ($elevation < -0.9) {
                         $this->map[$y][$x] = self::WATER;
                     }
                     
@@ -189,11 +189,11 @@ class TerrainMapGenerator {
     <style>
         body { font-family: Arial, sans-serif; text-align: center; }
         .map { display: inline-block; border: 2px solid #333; }
-        .row { height: 8px; }
+        .row { height: 2px; }
         .cell { 
             display: inline-block; 
-            width: 8px; 
-            height: 8px; 
+            width: 2px; 
+            height: 2px; 
             margin: 0;
             padding: 0;
         }
@@ -318,13 +318,10 @@ class TerrainMapGenerator {
 echo "=== 2D Random Square Land Map Generator ===\n\n";
 
 // Create a new map generator (50x50 is default)
-$generator = new TerrainMapGenerator(40, 40);
+$generator = new TerrainMapGenerator(200, 200);
 
 // Generate the map with a random seed
 $map = $generator->generateMap();
-
-// Display the map
-$generator->displayAscii();
 
 // Show statistics
 $generator->getStats();
